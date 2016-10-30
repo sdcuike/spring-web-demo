@@ -21,7 +21,7 @@
         <commons-io.version>2.4</commons-io.version>
 
         <aspectjweaver.version>1.8.6</aspectjweaver.version>
-        <spring.version>4.1.6.RELEASE</spring.version>
+        <spring.version>4.3.3.RELEASE</spring.version>
         <spring-asm.version>3.1.4.RELEASE</spring-asm.version>
 
         <cglib.verson>3.1</cglib.verson>
@@ -58,7 +58,7 @@
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
-            <version>1.1.43</version>
+            <version>1.2.20</version>
         </dependency>
         <dependency>
             <groupId>com.google.guava</groupId>
@@ -126,11 +126,11 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-oxm</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-asm</artifactId>
-            <version>${spring-asm.version}</version>
-        </dependency>
+<!--         <dependency> -->
+<!--             <groupId>org.springframework</groupId> -->
+<!--             <artifactId>spring-asm</artifactId> -->
+<!--             <version>${spring-asm.version}</version> -->
+<!--         </dependency> -->
 
 
         <dependency>

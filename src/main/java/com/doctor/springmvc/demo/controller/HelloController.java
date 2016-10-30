@@ -19,23 +19,88 @@
  */
 package com.doctor.springmvc.demo.controller;
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.http.MediaType;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.alibaba.fastjson.JSON;
+import com.doctor.springmvc.extend.RequestDecryptBody;
+import com.doctor.springmvc.extend.ResponseEncryptBody;
 
 /**
  * @author sdcuike
  *
  *         Created At 2016年8月28日 下午11:44:00
  */
-@RestController
-@RequestMapping(consumes = { MediaType.APPLICATION_JSON_VALUE })
+@Controller
+@RequestMapping(value = "/app", consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE })
 public class HelloController {
 
     @RequestMapping(value = "/hello", method = { RequestMethod.POST })
+    @ResponseBody
     public String hello() {
         return "hello web";
     }
 
+    @RequestMapping(value = "/hello1", method = { RequestMethod.POST })
+    @ResponseBody
+    public Message hello1(@RequestDecryptBody Message message) {
+        return message;
+    }
+
+    @RequestMapping(value = "/hello2", method = { RequestMethod.POST })
+    @ResponseEncryptBody
+    public Message hello2(@RequestDecryptBody Message message) {
+        return message;
+    }
+
+    @RequestMapping(value = "/hello3", method = { RequestMethod.POST })
+    @ResponseEncryptBody
+    public Message hello3(@RequestBody Message message) {
+        return message;
+    }
+
+    @RequestMapping(value = "/hello4", method = { RequestMethod.POST })
+    @ResponseEncryptBody
+    public Map<String, Object> hello4(@RequestDecryptBody Map<String, Object> message) {
+        return message;
+    }
+
+    @RequestMapping(value = "/hello5", method = { RequestMethod.POST })
+    @ResponseEncryptBody
+    public List<Object> hello5(@RequestDecryptBody List<Object> message) {
+        return message;
+    }
+
+    public static class Message {
+        private String name;
+        private int    age;
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public int getAge() {
+            return age;
+        }
+
+        public void setAge(int age) {
+            this.age = age;
+        }
+
+        @Override
+        public String toString() {
+            return JSON.toJSONString(this);
+        }
+    }
 }
